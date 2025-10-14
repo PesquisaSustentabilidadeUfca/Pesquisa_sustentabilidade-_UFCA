@@ -192,6 +192,16 @@ void enviarPendentes(){
 
 //LOOP
 void loop(){
+      // Reconectar Wi-Fi se desconectar
+  if (WiFi.status() != WL_CONNECTED) {
+    Serial.println("Wi-Fi desconectado. Tentando reconectar...");
+    WiFi.disconnect();
+    WiFi.begin(ssid, password);
+
+    // Espera pequena para tentar reconectar (opcional)
+    delay(500);
+  }
+  
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
   digitalWrite(trigPin, HIGH);
